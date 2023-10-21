@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  zjs:
+    container_name: zjs
+    image: kpine/zwave-js-server:latest
+    restart: unless-stopped
+    environment:
+      #S2_ACCESS_CONTROL_KEY: "7764841BC794A54442E324682A550CEF"
+      #S2_AUTHENTICATED_KEY: "66EA86F088FFD6D7497E0B32BC0C8B99"
+      #S2_UNAUTHENTICATED_KEY: "2FAB1A27E19AE9C7CC6D18ACEB90C357"
+      S0_LEGACY_KEY: "685435E91F172ACE0F6B01BE194CF6B6"
+    devices:
+      - '/dev/ttyZwave:/dev/zwave'
+    volumes:
+      - ./cache:/cache
+    ports:
+      - '3000:3000'
+    networks:
+      - all-default
+networks:
+  all-default:
+    external: true
